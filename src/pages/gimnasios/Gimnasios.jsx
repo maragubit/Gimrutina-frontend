@@ -5,6 +5,7 @@ import { AuthContext } from "../../AuthContext";
 import { getAllGimnasios } from "../../features/gimnasios/apis";
 import darkThemeStyles from "../../assets/js/darkTheme";
 import Cargando from "../../components/Cargando";
+import { Link } from "react-router-dom";
 
 function Gimnasios(){
     const {accessNew}=useContext(AuthContext);
@@ -14,7 +15,7 @@ function Gimnasios(){
     const[search,setSearch]=useState("");
     const [gimnasiosFiltered,setGimnasiosFiltered]=useState(gimnasios);
     const columns=[
-      {name:'Nombre', sortable: true, cell: row=>(<a href={`/gimnasios/gimnasio/${row.id}/`}>{row.nombre}</a>)},
+      {name:'Nombre', sortable: true, cell: row=>(<Link to={`/gimnasios/gimnasio/${row.id}/`}>{row.nombre}</Link>)},
       {name:'Dirección', sortable: true, cell: row=> row.direccion},
       {name:'Tarifa',selector: row => row.tarifa+ ' €', sortable: true,},
       {name:'Horario',selector: row => row.horario}
@@ -46,7 +47,7 @@ function Gimnasios(){
 
     return(<>
     <Container className="mb-5">
-        <h4>Gimnasios <a href="/gimnasios/gimnasio"><Button className="mt-2 mb-2 ml-2">Registrar gimnasio</Button></a></h4>
+        <h4>Gimnasios <Link to="/gimnasios/gimnasio"><Button className="mt-2 mb-2 ml-2">Registrar gimnasio</Button></Link></h4>
         <FormControl className="mb-2" placeholder="buscar gimnasio..." value={search} onChange={(e)=>{setSearch(e.target.value)}}></FormControl>
         {!loadData ? <DataTable columns={columns} data={gimnasiosFiltered} pagination customStyles={darkThemeStyles}>
 

@@ -1,12 +1,13 @@
 import { Container,Form, Button } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { getToken } from "../features/login/apis";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { Icon } from "@iconify/react/dist/iconify.js";
 import GoogleLoginButton from "../features/login/GoogleLoginButton";
+import {link} from "react-router-dom";
 
 function Login(){
     const { login } = useContext(AuthContext);
@@ -48,7 +49,7 @@ function Login(){
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
       </Form.Group>
-      <p>si aún no está registrado, regístrese <a href="/register">aquí</a></p>
+      <p>si aún no está registrado, regístrese <Link to="/register">aquí</Link></p>
       <Button variant="primary" type="submit">
         Enviar
       </Button>

@@ -1,5 +1,5 @@
 import { Alert, Button, Card, CardFooter, CardImg, CardText, Col, Container, FormControl, FormLabel, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContext,useEffect,useState } from "react";
 import { AuthContext } from "../../AuthContext";
 import { deleteEntrenamiento, getEntrenamiento, updateEntrenamiento } from "../../features/entrenamientos/apis";
@@ -113,7 +113,7 @@ return(<>
                     <CardText>{ejercicio.name}</CardText>
                     <CardImg src={ejercicio.image}></CardImg>
                     <CardFooter className="bg-dark text-white"><ol>{entrenamiento.series.filter(serie =>serie.exercise.name===ejercicio.name).map((serie=>{return(
-                        <li><a href={`/profile/series/${serie.id}`}>{serie.weight}kg x {serie.reps}</a></li>
+                        <li><Link to={`/profile/series/${serie.id}`}>{serie.weight}kg x {serie.reps}</Link></li>
                         )}))}</ol></CardFooter>
                 </Card>
             </Col>);
@@ -121,7 +121,7 @@ return(<>
     </Row>
     {mensaje && <Alert className="mt-2" variant="success">{mensaje}</Alert>}
     <Button className="mt-2 mb-5" onClick={()=>guardarEntrenamiento()}>Guardar cambios</Button><br/>
-        <span>Para poder añadir series nuevas, deja la fecha finalizado en blanco y recupera ese entrenamiento en <a href="/entrenamientos/create">entrenar</a></span>
+        <span>Para poder añadir series nuevas, deja la fecha finalizado en blanco y recupera ese entrenamiento en <Link to="/entrenamientos/create">entrenar</Link></span>
     <Button className="mt-5 mb-2 form-control" onClick={()=>eliminarEntrenamiento()} variant="danger">Eliminar entrenamiento <Icon className="ml-3" icon="gg:trash" /></Button> 
     
     

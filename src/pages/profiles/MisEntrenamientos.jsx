@@ -6,6 +6,7 @@ import { getMisEntrenamientos } from "../../features/entrenamientos/apis";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import darkThemeStyles from "../../assets/js/darkTheme";
 import Cargando from "../../components/Cargando";
+import { Link } from "react-router-dom";
 
 
 function MisEntrenamientos(){
@@ -23,7 +24,7 @@ function MisEntrenamientos(){
     const [final,setFinal]=useState(dateOnly);
 
     const columns=[
-      {name:'Fecha', sortable: true, cell: row=>(<a href={`/profile/mis-entrenamientos/${row.id}`}>{formatDate(row.date)}</a>)},
+      {name:'Fecha', sortable: true, cell: row=>(<Link to={`/profile/mis-entrenamientos/${row.id}`}>{formatDate(row.date)}</Link>)},
       {name:'Finalizado',selector: row => {return(row.finished ? "SI":"NO")},sortable: true,},
       {name:'Duración',selector: row => row.duracion,sortable: true,}
     ];
