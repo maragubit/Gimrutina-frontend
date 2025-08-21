@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { CardBody, CardImg, Table, Container, Alert } from "react-bootstrap";
+import { CardBody, CardImg, Table, Container} from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { deleteEjercicioRepeticiones } from "../ejercicios/apis";
 import { getRutina } from "./apis";

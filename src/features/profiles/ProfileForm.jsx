@@ -1,4 +1,5 @@
-import { Alert, Button, Col, Container, Form, FormControl, FormLabel, FormSelect, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, FormControl, FormLabel, FormSelect, Row} from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import { updateProfile } from "./apis";
 import { AuthContext } from "../../AuthContext";
@@ -21,7 +22,9 @@ const guardarCambios=async ()=>{
     data.append('peso', peso);
     data.append('altura', altura);
     data.append('peso', peso);
+    if (gimnasio){
     data.append('gimnasio', parseInt(gimnasio,10));
+    }
     if (image) {
     data.append('image', image);
     }

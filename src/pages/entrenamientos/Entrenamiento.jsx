@@ -1,5 +1,6 @@
 import { Button, Col, Container, FormSelect, Nav, Row } from "react-bootstrap";
-import { useState, useEffect, useContext, Alert } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Alert } from "react-bootstrap";
 import Cronometro from "../../features/entrenamientos/Cronometro";
 import DayExercises from "../../features/entrenamientos/DayExercises";
 import { AuthContext } from "../../AuthContext";
