@@ -95,17 +95,16 @@ function Entrenamiento(){
         showEntrenar ? setActiveKey('entrenar') : setActiveKey('recuperar');
     },[showEntrenar])
     
-    return(<>
-        <Container style={{width:"95%"}} maxWidth={false}>
-        <Row>
-        <Col xs="12" className="bg-dark mb-5">
-        <Nav className="entrenamiento" activeKey={activeKey} style={{backgroundColor: '#212529', color:"white" , padding: '1rem' }}>
+    return(<><Nav className="entrenamiento" activeKey={activeKey} style={{backgroundColor: '#212529', color:"white" , padding: '1rem' }}>
             <Nav.Link eventKey="entrenar" onClick={()=>setShowEntrenar(!showEntrenar)}>Entrenar</Nav.Link>
             <Nav.Link eventKey="recuperar" onClick={()=>setShowEntrenar(!showEntrenar)}>Recuperar entrenamiento</Nav.Link>
             <Nav.Link as={Link} to="/profile/mis-entrenamientos">Mis entrenamientos</Nav.Link>
 
         </Nav>
-        </Col>
+        <div className="espace"></div>
+        <div className="mt-5"></div>
+        <Container>
+        <Row>
         {!showEntrenar && <Recuperar entrenamientos={entrenamientos} startTraining={startTrainnig} setEntrenamiento={setEntrenamiento} setError={setError} setload={setload} setShowEntrenar={setShowEntrenar}/>}
         {showEntrenar && <Col xs="12" lg="9" className="mx-auto">
         <h3>Entrenamiento</h3>
