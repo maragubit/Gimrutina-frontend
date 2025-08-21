@@ -16,7 +16,7 @@ function Rutinas(){
     
     const nav=useNavigate();
     const columns=[
-      {name:'Nombre', sortable: true, cell: row=>(<Link to={`rutinas/rutina/${row.id}/`}>{row.name}</Link>)},
+      {name:'Nombre', sortable: true, cell: row=>(<Link to={`/rutinas/rutina/${row.id}/`}>{row.name}</Link>)},
       {name:'Autor',selector: row => row.user.username,sortable: true,},
       {name: 'Actual',selector: row => row.id === rutina_actual.rutina ? <Icon icon="formkit:circle" style={{ color: "#a4af06" }} /> : <Icon onClick={()=>marcarActual(row.id)} style={{cursor:"pointer"}} icon="tdesign:circle" />,sortable: true,},
       {name:'Dias',selector: row => row.total_dias,sortable: true,}
