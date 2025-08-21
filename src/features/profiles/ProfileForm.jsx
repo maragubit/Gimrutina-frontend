@@ -22,12 +22,17 @@ const guardarCambios=async ()=>{
     data.append('peso', peso);
     data.append('altura', altura);
     data.append('peso', peso);
+    if (name == null || peso == null || altura == null) {
+        setError("Todos los campos son obligatorios");
+        return;
+    }
     if (gimnasio){
     data.append('gimnasio', parseInt(gimnasio,10));
     }
     if (image) {
     data.append('image', image);
     }
+    
     try {
         await accessNew();
         const response= await updateProfile(profile.id,data);
@@ -52,6 +57,7 @@ useEffect(()=>{
                     placeholder="nombre completo..."
                     value={name}
                     onChange={(e)=>setName(e.target.value)}
+                    required
                     />
                 </Col>
                 
@@ -63,6 +69,7 @@ useEffect(()=>{
                     placeholder="peso (kg)..."
                     value={peso}
                     onChange={(e)=>setPeso(e.target.value)}
+                    required
                     />
 
                     
@@ -73,6 +80,7 @@ useEffect(()=>{
                     placeholder="estatura (cm)..."
                     value={altura}
                     onChange={(e)=>setAltura(e.target.value)}
+                    required
                     />
 
                     
@@ -96,7 +104,8 @@ useEffect(()=>{
         </Form>
 
         <Button onClick={()=>{guardarCambios()}} className="mt-2">Guardar cambios</Button>
-        {error && <Alert>{error}</Alert>}
+        <br/>
+        {error && <Alert className="mt-3" variant="danger">{error}</Alert>}
     </Container>
     
     </>);

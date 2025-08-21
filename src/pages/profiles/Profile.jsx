@@ -71,6 +71,8 @@ function Profile(){
             </Button>
 
             {!loadData && <ProfileForm profile={profile} setProfile={setProfile} gimnasios={gimnasios}/>}
+
+            
             
         </div>
             
