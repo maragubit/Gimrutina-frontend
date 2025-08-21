@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom';
+import {HashRouter,Route, Routes} from 'react-router-dom';
 import './App.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/tooplate-style.css';
