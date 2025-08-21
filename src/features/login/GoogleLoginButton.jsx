@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../AuthContext";
 import { useNavigate} from "react-router-dom";
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://gimrutina.pythonanywhere.com/",
 });
 
 
