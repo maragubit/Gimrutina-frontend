@@ -3,8 +3,10 @@ import React, { useState, useContext } from 'react';
 import {register,getToken} from '../features/login/apis'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
+import {useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 function Register(){
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,8 +21,13 @@ function Register(){
       setError('Las contraseñas no coinciden');
       return;
     }else{
+        if (!executeRecaptcha) {
+        setError("reCAPTCHA aún no está listo");
+        return;
+        }
         try{
-            const response=await register(email,password);
+            const token = await executeRecaptcha();
+            await register(email,password,token);
             const response2 = await getToken(email, password);
             login({
               access: response2.data.access,
@@ -29,8 +36,8 @@ function Register(){
           });
             redirect("/");
         }
-        catch{
-            setError("Error al proceder al registro");
+        catch(err){
+            setError(err.response.data.detail);
         }
     }
 

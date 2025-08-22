@@ -3,13 +3,11 @@ import { useState, useContext } from "react";
 import { getToken } from "../features/login/apis";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
-import { Icon } from "@iconify/react/dist/iconify.js";
 import GoogleLoginButton from "../features/login/GoogleLoginButton";
-import {link} from "react-router-dom";
+import {useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 function Login(){
+    const { executeRecaptcha } = useGoogleReCaptcha();
     const { login } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,8 +15,13 @@ function Login(){
     const home=useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!executeRecaptcha) {
+        setError("reCAPTCHA aún no está listo");
+        return;
+        }
         try {
-            const response = await getToken(email, password);
+            const token = await executeRecaptcha();
+            const response = await getToken(email, password, token);
             login({
               access: response.data.access,
               refresh: response.data.refresh,

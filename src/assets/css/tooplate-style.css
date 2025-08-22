@@ -21,6 +21,13 @@ a:focus {
 .entrenamiento .nav-link{
 	color:white !important;
 }
+.rc-anchor-light {
+    background: #f9f9f900 !important;
+    color: #000;
+}
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
 @media (max-width:990px){
 .entrenamiento{
 	position:fixed;

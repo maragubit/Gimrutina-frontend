@@ -3,10 +3,11 @@ import Cookies from "js-cookie";
 
 const domain = process.env.REACT_APP_API_DOMAIN;
 
-export const getToken = (email, password) => {
+export const getToken = (email, password,token) => {
   return axios.post(`${domain}/login/api/login/`, {
     email,
-    password
+    password,
+    recaptcha_token: token
   });
 };
 
@@ -27,6 +28,6 @@ export const getUser = () => {
   });
 };
 
-export const register = (email,password)=>{
-  return axios.post(`${domain}/login/user/`,{email, password});
+export const register = (email,password,token)=>{
+  return axios.post(`${domain}/login/user/`,{email, password, recaptcha_token: token});
 }

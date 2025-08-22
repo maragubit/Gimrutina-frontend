@@ -58,7 +58,7 @@ function Gimnasio(){
 
         try{
             await accessNew();
-             const token = await executeRecaptcha();
+            const token = await executeRecaptcha();
             await createGimnasio(nombre,direccion,horario,tarifa,admin,token);
             redirect("/gimnasios/");    
 

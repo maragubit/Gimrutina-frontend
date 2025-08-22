@@ -27,6 +27,7 @@ import Amigos from './pages/profiles/Amigos';
 import Notificaciones from './pages/profiles/Notificaciones';
 import Suscripciones from './pages/profiles/Suscripciones';
 
+
 function App() {
   return (
 
