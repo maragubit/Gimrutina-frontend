@@ -12,7 +12,7 @@ function Rutina(){
     const [name,setName]=useState(null)
     const [isPrivate,setPrivada]=useState(true);
     const [error,setError]=useState("");
-     const { executeRecaptcha } = useGoogleReCaptcha();
+    const { executeRecaptcha } = useGoogleReCaptcha();
 
     const handleSubmit= async (e)=>{
         e.preventDefault();

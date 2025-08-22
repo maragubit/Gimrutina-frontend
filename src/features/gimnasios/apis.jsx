@@ -21,9 +21,9 @@ export const getGimnasio=(id)=>{
 
 }
 
-export const createGimnasio=(nombre,direccion,horario,tarifa,admin)=>{
+export const createGimnasio=(nombre,direccion,horario,tarifa,admin,token)=>{
     const accessToken=Cookies.get('access');
-    return axios.post(`${domain}/gimnasios/gimnasios/`,{nombre,direccion,horario,tarifa,admin},{
+    return axios.post(`${domain}/gimnasios/gimnasios/`,{nombre,direccion,horario,tarifa,admin, recaptcha_token:token},{
         headers:{
             Authorization:`Bearer ${accessToken}`
         }

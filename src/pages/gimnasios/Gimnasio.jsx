@@ -7,8 +7,11 @@ import { createGimnasio, deleteGimnasio, getGimnasio, updateGimnasio } from "../
 import { getUsers } from "../../features/profiles/apis";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Cookies from "js-cookie";
+import {useGoogleReCaptcha } from "react-google-recaptcha-v3";
+
 
 function Gimnasio(){
+    const { executeRecaptcha } = useGoogleReCaptcha();
     const {accessNew}=useContext(AuthContext);
     const redirect=useNavigate();
     const { id = null}=useParams();
@@ -48,9 +51,15 @@ function Gimnasio(){
     
 
     const registrarGim= async()=>{
+         if (!executeRecaptcha) {
+        setError("reCAPTCHA aún no está listo");
+        return;
+        }
+
         try{
             await accessNew();
-            await createGimnasio(nombre,direccion,horario,tarifa,admin);
+             const token = await executeRecaptcha();
+            await createGimnasio(nombre,direccion,horario,tarifa,admin,token);
             redirect("/gimnasios/");    
 
         }catch(err){
