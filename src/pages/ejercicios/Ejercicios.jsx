@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { getProfile } from "../../features/profiles/apis";
 import { Link } from "react-router-dom";
+import noImg from '../../assets/img/noimg.jpg';
 
 function Ejercicios(){
     const [name,setName]=useState();
@@ -127,7 +128,7 @@ function Ejercicios(){
     <Card style={{ maxWidth: '17rem', minWidth:"160px", color:"white" }} className=" mx-auto mb-2 mt-2 bg-dark">
     <div className="mb-0 mt-1">{favoritosIds?.has(ejercicio?.id) ? <Icon className="float-end" onClick={()=>quitarFavorito(ejercicio.id)} width="25" icon="mdi:heart" style={{color:"red",cursor:"pointer"}} />:<Icon className="float-end" width="25" style={{cursor:"pointer"}} onClick={()=>marcarFavorito(ejercicio.id)} icon="mdi-light:heart" />}</div>
     <Link to={`/ejercicios/${ejercicio.id}`}><Card.Text><p style={{color:"white"}} key={index}>{ejercicio.name} {ejercicio.private ? <Icon className="ml-2" icon="el:lock" />: <Icon className="ml-2" icon="el:unlock" />}</p></Card.Text>
-    <Card.Img src={ejercicio.image} style={{height:"220px"}}/></Link>
+    <Card.Img src={ejercicio.image? ejercicio.image : noImg} style={{height:"220px"}}/></Link>
     <CardFooter><span style={{fontSize:"12px"}}>{ejercicio.muscle}</span>
     <div><Icon style={{fontSize:"1rem"}} className="d-inline" icon="fe:user" /> <p className="d-inline" style={{fontSize:"0.8rem"}}>{ejercicio.user.username}</p></div>
     </CardFooter>

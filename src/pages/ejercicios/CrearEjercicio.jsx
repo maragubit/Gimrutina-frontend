@@ -26,7 +26,7 @@ function CrearEjercicio() {
       await createEjercicio(data);
       redirect("/ejercicios/")
     } catch (err) {
-      setError(err.message);
+      setError(err.response.data.detail);
     }
   };
 
