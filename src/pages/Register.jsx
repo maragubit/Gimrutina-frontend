@@ -27,8 +27,9 @@ function Register(){
         }
         try{
             const token = await executeRecaptcha();
-            await register(email,password,token);
-            const response2 = await getToken(email, password);
+            const response=await register(email,password,token);
+            const token2 = await executeRecaptcha();
+            const response2 = await getToken(email, password,token2);
             login({
               access: response2.data.access,
               refresh: response2.data.refresh,
@@ -36,8 +37,8 @@ function Register(){
           });
             redirect("/");
         }
-        catch(err){
-            setError(err.response.data.detail);
+        catch{
+            console.log("Error desconocido");
         }
     }
 
