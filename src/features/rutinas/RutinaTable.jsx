@@ -16,7 +16,6 @@ function RutinaTable({rutina,setRutina}){
     const isUser=()=>{
         return (rutina.user.id==Cookies.get('user')); 
     }
-    console.log(isUser());
     const borrarEjercicio=async (ejercicioId)=>{
         try{
             await accessNew();

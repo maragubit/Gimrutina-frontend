@@ -13,11 +13,12 @@ export const getAllRutinas = () => {
 });
 }
 
-export const createRutina= (name,isPrivate)=>{
+export const createRutina= (name,isPrivate,token)=>{
   const accessToken = Cookies.get('access');
   return axios.post(`${domain}/rutinas/api/rutinas/`, {
   name,
-  private:isPrivate
+  private:isPrivate,
+  recaptcha_token: token
   },
   {
   headers: {

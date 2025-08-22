@@ -4,15 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter,HashRouter } from 'react-router-dom';
+import {HashRouter } from 'react-router-dom';
 import { AuthProvider } from "./AuthContext";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HashRouter>
     <AuthProvider>
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}>
     <App />
+    </GoogleReCaptchaProvider>
     </AuthProvider>,
     </HashRouter>
   </React.StrictMode>

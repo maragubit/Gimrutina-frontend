@@ -3,6 +3,7 @@ import { useState,useContext } from "react";
 import { createRutina } from "../../features/rutinas/apis";
 import { AuthContext } from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
+import {useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 
 function Rutina(){
@@ -11,12 +12,21 @@ function Rutina(){
     const [name,setName]=useState(null)
     const [isPrivate,setPrivada]=useState(true);
     const [error,setError]=useState("");
+     const { executeRecaptcha } = useGoogleReCaptcha();
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
+        if (!executeRecaptcha) {
+        setError("reCAPTCHA aún no está listo");
+        return;
+        }
+        
+        
         try {
+            const token = await executeRecaptcha();
+            console.log("Token generado:", token);
             accessNew();
-            const response= await createRutina(name,isPrivate);
+            const response= await createRutina(name,isPrivate,token);
             const id=response.data.id;
             navegador(`/rutinas/rutina/${id}/`)
         }
