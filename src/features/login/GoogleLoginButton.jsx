@@ -24,7 +24,7 @@ export default function GoogleLoginButton({ onAuth }) {
               refresh: data.refresh,
               user: data.user.id
           });
-    navigate("/");
+    navigate("https://gimrutina.netlify.app");
   } catch (e) {
     console.error(e);
     alert("Error al iniciar sesión con Google");
