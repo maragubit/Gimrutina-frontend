@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import {accessNew} from "../../utils";
 
 const domain = process.env.REACT_APP_API_DOMAIN;
 
@@ -18,12 +19,12 @@ export const refreshToken = () => {
   });
 };
 
-export const getUser = () => {
+export const getUser = async() => {
   const user = Cookies.get("user");
-  const access=Cookies.get("access");
+  const accessToken= await accessNew();
   return axios.get(`${domain}/login/user/${user}/`, {
     headers: {
-    Authorization: `Bearer ${access}`
+    Authorization: `Bearer ${accessToken}`
     }
   });
 };

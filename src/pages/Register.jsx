@@ -27,11 +27,10 @@ function Register(){
         }
         try{
             const token = await executeRecaptcha();
-            const response=await register(email,password,token);
+            await register(email,password,token);
             const token2 = await executeRecaptcha();
             const response2 = await getToken(email, password,token2);
             login({
-              access: response2.data.access,
               refresh: response2.data.refresh,
               user: response2.data.user
           });

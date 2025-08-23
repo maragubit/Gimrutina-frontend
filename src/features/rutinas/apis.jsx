@@ -1,11 +1,14 @@
 import axios from "axios"
 import Cookies from "js-cookie";
+import {accessNew} from "../../utils";
+
+
 const domain=process.env.REACT_APP_API_DOMAIN;
  
 
 /* APIS RUTINAS */
-export const getAllRutinas = () => {
-  const accessToken = Cookies.get('access');
+export const getAllRutinas = async() => {
+  const accessToken= await accessNew();
   return axios.get(`${domain}/rutinas/api/rutinas/`, {
   headers: {
     Authorization: `Bearer ${accessToken}`,
@@ -13,8 +16,8 @@ export const getAllRutinas = () => {
 });
 }
 
-export const createRutina= (name,isPrivate,token)=>{
-  const accessToken = Cookies.get('access');
+export const createRutina= async (name,isPrivate,token)=>{
+  const accessToken= await accessNew();
   return axios.post(`${domain}/rutinas/api/rutinas/`, {
   name,
   private:isPrivate,
@@ -28,8 +31,8 @@ export const createRutina= (name,isPrivate,token)=>{
   );
 }
 
-export const getRutina= (id)=>{
-  const accessToken = Cookies.get('access');
+export const getRutina= async (id)=>{
+  const accessToken= await accessNew();
   return axios.get(`${domain}/rutinas/api/rutinas/${id}/`, {
   headers: {
     Authorization: `Bearer ${accessToken}`,
@@ -37,8 +40,8 @@ export const getRutina= (id)=>{
   });
 }
 
-export const updateRutina= (id,name,Isprivate)=>{
-  const accessToken = Cookies.get('access');
+export const updateRutina= async(id,name,Isprivate)=>{
+  const accessToken= await accessNew();
   return axios.put(`${domain}/rutinas/api/rutinas/${id}/`,{name,private:Isprivate}, {
   headers: {
     Authorization: `Bearer ${accessToken}`,
@@ -48,8 +51,8 @@ export const updateRutina= (id,name,Isprivate)=>{
 }
 
 /* APIS RUTINA ACTUAL */
-export const rutinaActual=()=>{ //devuelve una instancia de rutina marcada como actual
-    const accessToken=Cookies.get('access');
+export const rutinaActual=async ()=>{ //devuelve una instancia de rutina marcada como actual
+    const accessToken= await accessNew();
     return axios.get(`${domain}/rutinas/api/rutina-actual/`,{
         headers:{
             Authorization: `Bearer ${accessToken}`
@@ -57,19 +60,19 @@ export const rutinaActual=()=>{ //devuelve una instancia de rutina marcada como 
     })
 }
 
-export const getRutinaActual=()=>{ //devuelve la instancia de RutinaActual marcada como actual
-  const accessToken=Cookies.get('access');
+export const getRutinaActual=async()=>{ //devuelve la instancia de RutinaActual marcada como actual
+  const accessToken= await accessNew();
     return axios.get(`${domain}/rutinas/api/rutina-actual/mi-rutinaActual/`,{
         headers:{
             Authorization: `Bearer ${accessToken}`
         }
     })
 }
-export const crearRutinaActual=(rutina)=>{
-    const accessToken=Cookies.get('access');
-    return axios.post(`${domain}/rutinas/api/rutina-actual/`,{rutina},{
-        headers:{
-            Authorization: `Bearer ${accessToken}`
-        }
-    })
+export const crearRutinaActual=async(rutina)=>{
+  const accessToken= await accessNew();    
+  return axios.post(`${domain}/rutinas/api/rutina-actual/`,{rutina},{
+    headers:{
+        Authorization: `Bearer ${accessToken}`
+    }
+  })
 }

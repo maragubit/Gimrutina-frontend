@@ -13,7 +13,6 @@ function Navegador() {
 const location = useLocation();
 
 const {isAuth}=useContext(AuthContext);
-const {accessNew}=useContext(AuthContext)
 const[profile,setProfile]=useState();
 const [error,setError]=useState();
 const[loadData,setLoadData]=useState(true);
@@ -44,8 +43,8 @@ useEffect(()=>setRefresh(prev => prev+1),[profile])
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="mainNav" onClick={() => setExpanded(expanded ? false : "expanded")} />
-          <Navbar.Collapse id="mainNav">
-            <Nav className="ml-auto mr-4" activeKey={location.pathname} style={{fontSize:"15px"}}>
+          <Navbar.Collapse id="mainNav" className="justify-content-end">
+            <Nav  activeKey={location.pathname} style={{fontSize:"15px"}}>
               <Nav.Link eventKey="/" as={Link} to="/">Home</Nav.Link>
               {isAuth ? (
                 <>

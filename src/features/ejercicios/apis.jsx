@@ -1,12 +1,15 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import {accessNew} from "../../utils";
+
 const domain=process.env.REACT_APP_API_DOMAIN;
 
 
 
+
 /* EJERCICIOS */
-export const getAllEjercicios = () => {
-  const accessToken=Cookies.get("access");
+export const getAllEjercicios = async() => {
+  const accessToken= await accessNew();
   return axios.get(`${domain}/ejercicios/ejercicios/`, {
   headers: {
     Authorization: `Bearer ${accessToken}`,
@@ -14,8 +17,8 @@ export const getAllEjercicios = () => {
 });
 }
 
-export const getEjercicio= (id)=> {
-  const accessToken=Cookies.get("access");
+export const getEjercicio= async (id)=> {
+  const accessToken= await accessNew();
   return axios.get(`${domain}/ejercicios/ejercicios/${id}/`, {
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -24,8 +27,8 @@ export const getEjercicio= (id)=> {
 
 }
 
-export const deleteEjercicio= (id)=> {
-  const accessToken=Cookies.get("access");
+export const deleteEjercicio= async (id)=> {
+  const accessToken= await accessNew();
   return axios.delete(`${domain}/ejercicios/ejercicios/${id}/`, {
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -34,8 +37,8 @@ export const deleteEjercicio= (id)=> {
 
 }
 
-export const updateEjercicio= (id,data)=>{
-  const accessToken=Cookies.get("access");
+export const updateEjercicio= async (id,data)=>{
+  const accessToken= await accessNew();
   return axios.put(`${domain}/ejercicios/ejercicios/${id}/`,data,{
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -43,8 +46,8 @@ export const updateEjercicio= (id,data)=>{
   });
 }
 
-export const createEjercicio=(data)=>{
-  const accessToken=Cookies.get("access");
+export const createEjercicio= async (data)=>{
+  const accessToken= await accessNew();
   return axios.post(`${domain}/ejercicios/ejercicios/`,data,{
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -53,8 +56,8 @@ export const createEjercicio=(data)=>{
 }
 
 /* EJERCICIOS FAVORITOS */
-export const getFavoritos=()=>{
-  const accessToken=Cookies.get("access");
+export const getFavoritos= async()=>{
+  const accessToken= await accessNew();
   return axios.get(`${domain}/favourites/ejercicios-favoritos/mis-favoritos/`,{
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -62,8 +65,8 @@ export const getFavoritos=()=>{
   });
 }
 
-export const marcarFavoritos=(ejercicio)=>{
-  const accessToken=Cookies.get("access");
+export const marcarFavoritos= async (ejercicio)=>{
+  const accessToken= await accessNew();
   return axios.post(`${domain}/favourites/ejercicios-favoritos/`,{ejercicio},{
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -71,8 +74,8 @@ export const marcarFavoritos=(ejercicio)=>{
   });
 }
 
-export const eliminarFavoritos=(ejercicio)=>{
-  const accessToken=Cookies.get("access");
+export const eliminarFavoritos= async(ejercicio)=>{
+  const accessToken= await accessNew();
   return axios.delete(`${domain}/favourites/ejercicios-favoritos/eliminar-favorito/`,{
     headers:{
       Authorization: `Bearer ${accessToken}`
@@ -85,27 +88,27 @@ export const eliminarFavoritos=(ejercicio)=>{
 
 /* EJERCICIO-REPETICIONES */
 
-export const createEjercicioRepeticiones = (reps_max,reps_min,exercise,series,rutina,day,order)=>{
-    const accessToken=Cookies.get("access");
-    return axios.post(`${domain}/ejercicios/ejercicios-repeticiones/`,{
-      reps_max,
-      reps_min,
-      exercise,
-      series,
-      rutina,
-      day,
-      order},
-      {
-      headers:
-      {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
+export const createEjercicioRepeticiones = async(reps_max,reps_min,exercise,series,rutina,day,order)=>{
+  const accessToken= await accessNew();
+  return axios.post(`${domain}/ejercicios/ejercicios-repeticiones/`,{
+    reps_max,
+    reps_min,
+    exercise,
+    series,
+    rutina,
+    day,
+    order},
+    {
+    headers:
+    {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
 
 }
 
-export const deleteEjercicioRepeticiones = (id)=>{
-  const accessToken=Cookies.get("access");
+export const deleteEjercicioRepeticiones = async(id)=>{
+  const accessToken= await accessNew();
   return axios.delete(`${domain}/ejercicios/ejercicios-repeticiones/${id}/`,{
     headers:{
       Authorization:`Bearer ${accessToken}`

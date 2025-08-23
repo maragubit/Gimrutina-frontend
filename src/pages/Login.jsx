@@ -23,7 +23,6 @@ function Login(){
             const token = await executeRecaptcha();
             const response = await getToken(email, password, token);
             login({
-              access: response.data.access,
               refresh: response.data.refresh,
               user: response.data.user
           });
