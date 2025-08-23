@@ -9,7 +9,6 @@ function NavegadorProfile(){
                     <Nav.Link eventKey="/profile/progreso" as={Link} to="/profile/progreso"> Progreso </Nav.Link>
                     <Nav.Link eventKey="/profile/amigos" as={Link} to="/profile/amigos"> Mis amigos </Nav.Link>
                     <Nav.Link eventKey="/profile/notificaciones" as={Link} to="/profile/notificaciones"> Notificaciones </Nav.Link>
-                    <Nav.Link eventKey="/profile/suscripciones" as={Link} to="/profile/suscripciones"> Suscripciones </Nav.Link>
                     
     </Nav>
     </>);
