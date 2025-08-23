@@ -48,7 +48,7 @@ function RutinaTable({rutina,setRutina}){
                 <td key={ejercicio.id} style={{ width: '9rem' }}>
                 <Card className="mx-auto" style={{ width: '9rem' }}>
                     {isUser() && <p><Icon onClick={()=>borrarEjercicio(ejercicio?.id)} icon="solar:close-square-bold" color="red" style={{fontSize:"25px", position:"absolute", right:"0px", cursor:"pointer"}}/></p> }
-                    <p> {ejercicio.order}) {ejercicio.exercise_data.name}</p>
+                    <p style={{minHeight:"49.38px"}}> {ejercicio.order}) {ejercicio.exercise_data.name}</p>
                     
                     <CardImg
                         src={ejercicio.exercise_data.image ? ejercicio.exercise_data.image : noImg}
