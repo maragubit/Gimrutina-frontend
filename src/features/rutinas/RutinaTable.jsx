@@ -7,6 +7,7 @@ import { getRutina } from "./apis";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthContext";
 import Cookies from "js-cookie";
+import noImg from '../../assets/img/noimg.jpg';
 
 function RutinaTable({rutina,setRutina}){
     
@@ -50,7 +51,7 @@ function RutinaTable({rutina,setRutina}){
                     <p> {ejercicio.order}) {ejercicio.exercise_data.name}</p>
                     {ejercicio.exercise_data.image && (
                     <CardImg
-                        src={ejercicio?.exercise_data?.image}
+                        src={ejercicio?.exercise_data?.image ? ejercicio?.exercise_data?.image : noImg}
                         style={{ height: "90px" }}
                     />
                     )}
