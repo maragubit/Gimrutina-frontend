@@ -21,6 +21,7 @@ function Ejercicios(){
     const [error,setError]=useState();
     const favoritosIds = useMemo(() => new Set(Array.isArray(favourites) ? favourites.map(fav => fav.id) : []),[favourites]);
     const [profile,setProfile]=useState();
+    const [selected,setSelected]=useState("4");
     //se obtienen los ejercicios
     useEffect( ()=>{
         async function fetchEjercicios(){
@@ -28,14 +29,15 @@ function Ejercicios(){
                 accessNew();
                 const response = await getAllEjercicios();
                 setAllEjercicios(response.data);
-                setFilteredEjercicios(response.data);
                 const response2 = await getFavoritos()
                 setFavourites(response2.data);
                 const response3 = await getProfile();
                 setProfile(response3.data);
                 setMisEjercicios(response.data.filter((ejercicio)=>ejercicio.user.id==Cookies.get('user')));
-                setEjerciciosGim(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == profile.gimnasio}));
-                setEjercicios(ejerciciosGim);//iniciamos con los ejercicios del gim como seleccionados
+                setEjerciciosGim(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));
+                setEjercicios(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));//iniciamos con los ejercicios del gim como seleccionados
+                setFilteredEjercicios(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));
+                console.log(ejerciciosGim);
         }
              
         catch (error) {
@@ -49,13 +51,14 @@ function Ejercicios(){
     //funcion para filtrar por select
 
     const selectEjercicios=(opcion)=>{
+        setSelected(opcion);
         switch(opcion){
             case "1": //todos
                 setEjercicios(allEjercicios);
                 break;
             case "2": //mis favoritos
                 setEjercicios(favourites);
-                break;
+                break;   
             case "3"://mis ejercicios
                 setEjercicios(misEjercicios);
                 break;
@@ -95,12 +98,21 @@ function Ejercicios(){
 
     // Filtrar cada vez que cambia el input
     useEffect(() => {
+        if (name!== ""){
         const filtered =Array.isArray(ejercicios) ? ejercicios?.filter(ejercicio =>
        (ejercicio.name && ejercicio.name.toLowerCase().includes((name || '').toLowerCase())) ||
        (ejercicio.muscle && ejercicio.muscle.toLowerCase().includes((name || '').toLowerCase())) ||
        (ejercicio.user.username && ejercicio.user.username.toLowerCase().includes((name || '').toLowerCase()))
         ) : []
         setFilteredEjercicios(filtered);
+    }
+        else {
+            if (Array.isArray(ejercicios)){
+            setFilteredEjercicios(ejercicios);
+            }else{
+                setFilteredEjercicios([]);
+            }
+        } 
     }, [name, ejercicios]);
 
     
@@ -111,18 +123,18 @@ function Ejercicios(){
     <h3>Lista de Ejercicios <Link to="/ejercicios/create"><button className="btn btn-primary ml-4 mb-4 mt-3">Crear ejercicio</button></Link></h3>
     
     <div>
-    <FormSelect className="mb-3" onChange={(e)=>selectEjercicios(e.target.value)}>
+    <FormSelect className="mb-3" value={selected} onChange={(e)=>selectEjercicios(e.target.value)}>
         <option value="1">Ejercicios públicos</option>
         <option value="2">Favoritos</option>
         <option value="3">Mis ejercicios</option>
-        <option value="4" selected>Ejercicios de mi Gimnasio</option>
+        <option value="4">Ejercicios de mi Gimnasio</option>
     </FormSelect></div>
     <FormControl placeholder="nombre, músculo, usuario..."  value={name} onChange={(e) => setName(e.target.value)}></FormControl>
     <br/>
     
     <Row>
 
-    {filteredEjercicios?.map((ejercicio, index) => {
+    {filteredEjercicios && filteredEjercicios?.map((ejercicio, index) => {
   return (<>
     <Col xs="12" lg="3">
     <Card style={{ maxWidth: '17rem', minWidth:"160px", color:"white" }} className=" mx-auto mb-2 mt-2 bg-dark">
