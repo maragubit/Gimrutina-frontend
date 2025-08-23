@@ -10,7 +10,6 @@ const api = axios.create({
 
 
 export default function GoogleLoginButton({ onAuth }) {
-  const navigate=useNavigate();
   const {login}=useContext(AuthContext);
 
 
@@ -20,11 +19,10 @@ export default function GoogleLoginButton({ onAuth }) {
     const { data } = await api.post("/api/auth/google/", { credential });
     onAuth?.(data);
     login({
-              access: data.access,
               refresh: data.refresh,
               user: data.user.id
           });
-    navigate("https://gimrutina.netlify.app");
+    window.location.href = "https://gimrutina.netlify.app";
   } catch (e) {
     console.error(e);
     alert("Error al iniciar sesión con Google");
