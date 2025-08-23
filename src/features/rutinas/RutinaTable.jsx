@@ -49,12 +49,12 @@ function RutinaTable({rutina,setRutina}){
                 <Card className="mx-auto" style={{ width: '9rem' }}>
                     {isUser() && <p><Icon onClick={()=>borrarEjercicio(ejercicio?.id)} icon="solar:close-square-bold" color="red" style={{fontSize:"25px", position:"absolute", right:"0px", cursor:"pointer"}}/></p> }
                     <p> {ejercicio.order}) {ejercicio.exercise_data.name}</p>
-                    {ejercicio.exercise_data.image && (
+                    
                     <CardImg
                         src={ejercicio.exercise_data.image ? ejercicio.exercise_data.image : noImg}
                         style={{ height: "90px" }}
                     />
-                    )}
+                    
                     <CardBody>
                     ({ejercicio.reps_max}-{ejercicio.reps_min}) x {ejercicio.series}
                     </CardBody>
