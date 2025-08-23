@@ -51,7 +51,7 @@ function RutinaTable({rutina,setRutina}){
                     <p> {ejercicio.order}) {ejercicio.exercise_data.name}</p>
                     {ejercicio.exercise_data.image && (
                     <CardImg
-                        src={ejercicio?.exercise_data?.image ? ejercicio?.exercise_data?.image : noImg}
+                        src={ejercicio.exercise_data.image ? ejercicio.exercise_data.image : noImg}
                         style={{ height: "90px" }}
                     />
                     )}
