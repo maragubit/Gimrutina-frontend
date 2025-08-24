@@ -1,4 +1,4 @@
-import {HashRouter,Route, Routes} from 'react-router-dom';
+import {HashRouter,Link,Route, Routes} from 'react-router-dom';
 import './App.css';
 import './assets/css/bootstrap.min.css';
 import './assets/css/tooplate-style.css';
@@ -26,18 +26,42 @@ import Progreso from './pages/profiles/Progreso';
 import Amigos from './pages/profiles/Amigos';
 import Notificaciones from './pages/profiles/Notificaciones';
 import Suscripciones from './pages/profiles/Suscripciones';
+import CookieConsent from "react-cookie-consent";
+import CookiesPolicy from './components/CookiesPolicy';
 
 
 function App() {
   return (
 
     <div className="App">
+      <CookieConsent
+        location="bottom"
+        buttonText="Aceptar"
+        declineButtonText="Rechazar"
+        enableDeclineButton
+        style={{ background: "#2B373B" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px", background: "#a4af06" }}
+        declineButtonStyle={{ background: "#af1010", color: "white" }}
+        onAccept={() => {
+          console.log("Cookies aceptadas");
+          // aquí activarías Google Analytics, etc.
+        }}
+        onDecline={() => {
+          console.log("Cookies rechazadas");
+          // aquí evitas cargar scripts de seguimiento
+        }}
+      >
+        Usamos cookies para mejorar la experiencia.{" "}
+        <Link to="/politica-de-cookies" style={{ color: "lightblue" }}>
+          Leer más
+        </Link>
+      </CookieConsent>
       <Routes>
       <Route path="/" element={<Applayout />}>
         <Route index element={<Home />} />
 
         {/* RUTINAS */}
-
+        <Route path="politica-de-cookies" element={<CookiesPolicy/>}/>
         <Route path="rutinas/" element={<Rutinas/>} />
         <Route path="rutinas/rutina" element={<Rutina />}/>
         <Route path="rutinas/rutina/:id/" element={<RutinaAdd />}/>

@@ -2,7 +2,7 @@ import { Link, useLocation} from 'react-router-dom';
 import logo from '../assets/img/logo.png';     // Ajusta la ruta según tu estructura
 import profileIcon from '../assets/img/profile.png';
 import { AuthContext } from '../AuthContext';
-import { Navbar, Nav, Container,Card,CardImg, CardTitle } from 'react-bootstrap';
+import { Navbar, Nav, Container,Card,CardImg, Alert } from 'react-bootstrap';
 import { useEffect, useState, useContext } from 'react';
 import { getProfile } from '../features/profiles/apis';
 
@@ -20,12 +20,14 @@ const [refresh,setRefresh]=useState(0);
 const [expanded, setExpanded] = useState(false);
 useEffect(()=>{
   const fetchProfile=async()=>{
+    if (!isAuth) return;
     try{
       const response=await getProfile();
       setProfile(response.data);
       setLoadData(false);
     }catch(err){
-      setError(err.response.data.detail)
+      err.response?.data ? setError(err.response.data.detail): setError("Error de conexión con la base de datos");
+      
     }
   }
   fetchProfile();
@@ -65,7 +67,10 @@ useEffect(()=>setRefresh(prev => prev+1),[profile])
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className='espace'></div>
+      <div className='espace'>
+       
+      </div>
+      {error && <Alert variant="danger">{error}</Alert>}
     </>
   );
 }
