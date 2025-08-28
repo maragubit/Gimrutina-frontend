@@ -5,22 +5,24 @@ import { AuthContext } from '../AuthContext';
 import { Navbar, Nav, Container,Card,CardImg, Alert } from 'react-bootstrap';
 import { useEffect, useState, useContext } from 'react';
 import { getProfile } from '../features/profiles/apis';
+import Cookies from "js-cookie";
 
 
 
 
 function Navegador() {
+  
 const location = useLocation();
-
-const {isAuth}=useContext(AuthContext);
 const[profile,setProfile]=useState();
 const [error,setError]=useState();
 const[loadData,setLoadData]=useState(true);
 const [refresh,setRefresh]=useState(0);
 const [expanded, setExpanded] = useState(false);
+
+
 useEffect(()=>{
-  const fetchProfile=async()=>{
-    if (!isAuth) return;
+  const fetchProfile= async()=>{
+    
     try{
       const response=await getProfile();
       setProfile(response.data);
@@ -30,10 +32,18 @@ useEffect(()=>{
       
     }
   }
+  const cookie = Cookies.get("refresh");
+  console.log("Refresh token cookie:", cookie);
+  
+  if (!cookie) {
+      setError("Usuario no autenticado");
+      setProfile(null);
+      return;
+  };
   fetchProfile();
-},[])
+},[]);
 
-useEffect(()=>setRefresh(prev => prev+1),[profile])
+useEffect(()=>setRefresh(prev => prev+1),[profile]);
 
   return (
     <>
@@ -48,7 +58,7 @@ useEffect(()=>setRefresh(prev => prev+1),[profile])
           <Navbar.Collapse id="mainNav" className="justify-content-end">
             <Nav  activeKey={location.pathname} style={{fontSize:"15px"}}>
               <Nav.Link eventKey="/" as={Link} to="/">Home</Nav.Link>
-              {isAuth ? (
+              {profile  ? (
                 <>
                   <Nav.Link eventKey="/rutinas" as={Link} to="rutinas"  onClick={() => setExpanded(false)}>Rutinas</Nav.Link>
                   <Nav.Link eventKey="/ejercicios" as={Link} to="/ejercicios"  onClick={() => setExpanded(false)}>Ejercicios</Nav.Link>

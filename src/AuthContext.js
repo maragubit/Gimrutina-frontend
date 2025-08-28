@@ -9,31 +9,13 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [refresh, setRefresh] = useState(Cookies.get("refresh") || null);
   const [user, setUser] = useState(Cookies.get("user") || null);
-  const [isAuth, setIsAuth] = useState(false);
   const navigate=useNavigate();
 
-  const isAuthenticated = async()=>{
-    if(Cookies.get("refresh")){
-      try{
-        await refreshToken();
-        setIsAuth(true);
-        return true;
+  const isAuthenticated = ()=>{
+   
+  }
 
-      }catch(error){
-        logout();
-        return false
-      }
-    }
-    return false;
-  };
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      const result = await isAuthenticated(); // tu función async
-      setIsAuth(result);
-    };
-    checkAuth();
-  }, []);
+ 
 
   const [freshData,setFreshData]=useState(0);
   const triggerFreshData=()=>{setFreshData(prev=>prev+1);}
@@ -42,10 +24,9 @@ export function AuthProvider({ children }) {
     // Guarda en cookies con expiración
     Cookies.set("refresh", refresh, {  maxAge:"604800"});         // 7 días
     Cookies.set("user", user, {  maxAge:"604800" });
-
     setRefresh(refresh);
     setUser(user);
-    setIsAuth(true);
+    window.location.href = "/";
   };
 
 
@@ -56,8 +37,7 @@ export function AuthProvider({ children }) {
 
     setRefresh(null);
     setUser(null);
-    setIsAuth(false);
-    navigate("/");
+    window.location.href = "/";
 
   };
 
@@ -66,7 +46,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{freshData, triggerFreshData, accessNew, refresh, user, isAuth, login, logout }}>
+    <AuthContext.Provider value={{freshData, triggerFreshData, accessNew, refresh, user, isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

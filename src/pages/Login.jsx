@@ -26,8 +26,7 @@ function Login(){
               refresh: response.data.refresh,
               user: response.data.user
           });
-            home("/",{ replace: true });
-            }
+        }   
         catch (error) {
             setError("Error al iniciar sesión, email o contraseña incorrecta", error);
             }

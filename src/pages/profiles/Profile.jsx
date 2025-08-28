@@ -38,7 +38,6 @@ function Profile(){
 
     const handleLogout = () => {
         logout();
-        navigate("/"); // Redirige a home tras cerrar sesión
     };
 
     const cambiarPassword = () => {
