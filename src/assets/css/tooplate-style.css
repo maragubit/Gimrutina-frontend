@@ -25,9 +25,9 @@ a:focus {
     background: #f9f9f900 !important;
     color: #000;
 }
-/* .grecaptcha-badge {
+.grecaptcha-badge {
     visibility: hidden !important;
-} */
+}
 @media (max-width:990px){
 .entrenamiento{
 	position:fixed;
