@@ -109,8 +109,8 @@ return(<>
     <Row>
         {ejercicios && ejercicios.map((ejercicio)=>{
             return(<Col xs="6" lg="3">
-                <Card>
-                    <CardText>{ejercicio.name}</CardText>
+                <Card className="mb-2">
+                    <CardText style={{minHeight:"49.38px"}}>{ejercicio.name}</CardText>
                     <CardImg src={ejercicio.image}></CardImg>
                     <CardFooter className="bg-dark text-white"><ol>{entrenamiento.series.filter(serie =>serie.exercise.name===ejercicio.name).map((serie=>{return(
                         <li><Link to={`/profile/series/${serie.id}`}>{serie.weight}kg x {serie.reps}</Link></li>
