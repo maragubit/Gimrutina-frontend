@@ -1,5 +1,5 @@
 import {Container, Row } from 'react-bootstrap';
-import portada from '../assets/img/portada.jpg'
+import portada from '../assets/img/portada.png'
 
 function Home(){
     return (<>
