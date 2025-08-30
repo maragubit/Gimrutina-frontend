@@ -22,8 +22,8 @@ export function AuthProvider({ children }) {
 
   const login = ({ refresh, user }) => {
     // Guarda en cookies con expiración
-    Cookies.set("refresh", refresh, {  maxAge:"604800"});         // 7 días
-    Cookies.set("user", user, {  maxAge:"604800" });
+    Cookies.set("refresh", refresh, {  expires: 7});         // 7 días
+    Cookies.set("user", user, {  expires: 7 });
     setRefresh(refresh);
     setUser(user);
     window.location.href = "/";
