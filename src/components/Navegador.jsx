@@ -2,7 +2,7 @@ import { Link, useLocation} from 'react-router-dom';
 import logo from '../assets/img/logo.png';     // Ajusta la ruta según tu estructura
 import profileIcon from '../assets/img/profile.png';
 import { AuthContext } from '../AuthContext';
-import { Navbar, Nav, Container,Card,CardImg, Alert } from 'react-bootstrap';
+import { Navbar, Nav, Container,Card,CardImg, Alert, CardText } from 'react-bootstrap';
 import { useEffect, useState, useContext } from 'react';
 import { getProfile } from '../features/profiles/apis';
 import Cookies from "js-cookie";
@@ -64,7 +64,8 @@ useEffect(()=>setRefresh(prev => prev+1),[profile]);
                   <Nav.Link eventKey="/ejercicios" as={Link} to="/ejercicios"  onClick={() => setExpanded(false)}>Ejercicios</Nav.Link>
                   <Nav.Link eventKey="/entrenamientos/create" as={Link} to="/entrenamientos/create"  onClick={() => setExpanded(false)}>Entrenar</Nav.Link>
                   <Nav.Link eventKey="/gimnasios" as={Link} to="/gimnasios"  onClick={() => setExpanded(false)}>Gimnasios</Nav.Link>
-                  <Nav.Link eventKey="/profile" as={Link} to="profile" className="d-flex justify-content-end ml-5 mr-2"  onClick={() => setExpanded(false)}>
+                  <Nav.Link eventKey="/profile" as={Link} to="profile" className="d-flex justify-content-end ml-5 mr-2 pr-2"  onClick={() => setExpanded(false)}>
+                  <span className='mr-1 mt-2'>Área personal</span>
                     <Card style={{width:"45px", border:"0"}}>
                       {!loadData && profile.image ? <CardImg src={profile.image} style={{borderRadius:"200px"}}/>:<CardImg src={profileIcon}/>}
                     </Card>
