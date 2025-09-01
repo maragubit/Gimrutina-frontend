@@ -32,3 +32,12 @@ export const updateProfile= async (id,data)=>{
         }
     })
 }
+
+export const addFriend= async (id)=>{
+  const accessToken= await accessNew();
+    return axios.post(`${domain}/perfiles/perfiles/${id}/add_friend/`,{},{
+        headers:{
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+}
