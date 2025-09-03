@@ -68,9 +68,9 @@ export const getRutinaActual=async()=>{ //devuelve la instancia de RutinaActual 
         }
     })
 }
-export const crearRutinaActual=async(rutina)=>{
+export const crearRutinaActual=async(rutina,token)=>{
   const accessToken= await accessNew();    
-  return axios.post(`${domain}/rutinas/api/rutina-actual/`,{rutina},{
+  return axios.post(`${domain}/rutinas/api/rutina-actual/`,{rutina,recaptcha_token:token},{
     headers:{
         Authorization: `Bearer ${accessToken}`
     }

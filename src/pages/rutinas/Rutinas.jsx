@@ -6,6 +6,7 @@ import { AuthContext } from "../../AuthContext";
 import DataTable from "react-data-table-component";
 import darkThemeStyles from "../../assets/js/darkTheme";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import {useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 
 
@@ -28,11 +29,12 @@ function Rutinas(){
     const [loadData,setLoadData]=useState(true);
     const [filteredRutinas,setFilteredRutinas]=useState(null);
     const [search,setSearch]=useState("");
-
+    const { executeRecaptcha } = useGoogleReCaptcha();
     const marcarActual=async (id)=>{
         try{
+          const token = await executeRecaptcha();
           await accessNew();
-          const response = await crearRutinaActual(id);
+          const response = await crearRutinaActual(id,token);
           setRutinaActual(response.data);
 
         }catch(err){

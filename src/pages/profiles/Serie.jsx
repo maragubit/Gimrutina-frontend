@@ -100,15 +100,24 @@ function Serie(){
                     />
                     </Col>
                     </Row>
-                    
-                    
-                    <Col xs="12">
+                    <Row>
+                        <Col xs="6">
                     <FormLabel className="d-inline mr-3" style={{fontSize:"20px"}}>Fallo muscular</FormLabel>
                     <Form.Switch style={{fontSize:"20px"}} className="d-inline"
                     checked={formData.failure}
                     onChange={(e)=>(setFormData({...formData,failure:!formData.failure}))}
                     />
                     </Col>
+                    <Col xs="6">
+                    <FormLabel className="d-inline mr-3" style={{fontSize:"20px"}}>Fallo muscular</FormLabel>
+                    <Form.Switch style={{fontSize:"20px"}} className="d-inline"
+                    checked={formData.failure}
+                    onChange={(e)=>(setFormData({...formData,failure:!formData.failure}))}
+                    />
+                    </Col>
+                    </Row>
+                    
+                    
                     <Button className="mt-5 form-control mb-3" onClick={()=>{actualizaSerie()}} variant="primary">Guardar cambios</Button>
 
                     <Button className="mt-5 form-control mb-3" onClick={()=>borrarSerie()} variant="danger">Eliminar serie</Button>
