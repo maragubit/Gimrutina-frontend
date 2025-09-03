@@ -92,9 +92,9 @@ export const createSerie= async (data)=>{
     })
 }
 
-export const updateSerie= async (id,weight,reps,failure)=>{
+export const updateSerie= async (id,weight,reps,failure,date)=>{
   const accessToken= await accessNew();
-    return axios.patch(`${domain}/entrenamientos/series/${id}/`,{weight,reps,failure},{
+    return axios.patch(`${domain}/entrenamientos/series/${id}/`,{weight,reps,failure,date},{
         headers:{
             Authorization:`Bearer ${accessToken}`
         }

@@ -3,7 +3,7 @@ import { useState,useContext, useEffect } from "react";
 import { AuthContext } from "../../AuthContext";
 import { deleteSerie, getSerie, updateSerie } from "../../features/entrenamientos/apis";
 import Cargando from "../../components/Cargando";
-import { Row,Container,Form,Col,FormGroup,FormControl, FormLabel, Button, Card, CardImg, CardFooter } from "react-bootstrap";
+import { Row,Container,Form,Col,FormControl, FormLabel, Button, Card, CardImg, CardFooter } from "react-bootstrap";
 import Cookies from "js-cookie";
 
 function Serie(){
@@ -17,14 +17,15 @@ function Serie(){
     const [formData,setFormData]=useState({
     'weight':'',
     'reps':'',
-    'failure':false
+    'failure':false,
+    'date':''
 
     });
 
     const actualizaSerie=async()=>{
         try{
             await accessNew();
-            await updateSerie(id,formData.weight,formData.reps,formData.failure);
+            await updateSerie(id,formData.weight,formData.reps,formData.failure,formData.date);
             window.history.back();
         }catch(err){
             setError(err.response.data.detail);
@@ -51,7 +52,8 @@ function Serie(){
                 formData,
                 weight: response.data.weight,
                 reps: response.data.reps,
-                failure: response.data.failure
+                failure: response.data.failure,
+                date: new Date(response.data.date).toISOString().slice(0,16)
                 });
                 if (Cookies.get('user')==response.data.entrenamiento.user){
                     setIsOwner(true);
@@ -101,14 +103,14 @@ function Serie(){
                     </Col>
                     </Row>
                     <Row>
-                        <Col xs="6">
-                    <FormLabel className="d-inline mr-3" style={{fontSize:"20px"}}>Fallo muscular</FormLabel>
-                    <Form.Switch style={{fontSize:"20px"}} className="d-inline"
-                    checked={formData.failure}
-                    onChange={(e)=>(setFormData({...formData,failure:!formData.failure}))}
+                        <Col xs="12">
+                    <Form.Control style={{fontSize:"20px"}}
+                    value={formData.date}
+                    type="datetime-local"
+                    onChange={(e)=>(setFormData({...formData,date:e.target.value}))}
                     />
                     </Col>
-                    <Col xs="6">
+                    <Col xs="12" className="mt-3">
                     <FormLabel className="d-inline mr-3" style={{fontSize:"20px"}}>Fallo muscular</FormLabel>
                     <Form.Switch style={{fontSize:"20px"}} className="d-inline"
                     checked={formData.failure}

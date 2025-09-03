@@ -3,22 +3,22 @@ import { useState, useRef ,useEffect, useContext } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { AuthContext } from "../../AuthContext";
 import { createSerie, getEntrenamiento } from "./apis";
+import { DateTime } from "luxon";
 function SerieForm({exercise, setShowForm, entrenamiento, setEntrenamiento}){
     const {accessNew}=useContext(AuthContext);
     const [error,setError]=useState();
     const [serie,setSerie]=useState()
 
     const daynow = () => {
-        const today = new Date();
-        
-        return today.toISOString().split('T')[0]; // "YYYY-MM-DD"
+        const localISO = DateTime.now().toISO({ includeOffset: true, suppressMilliseconds: true });
+        return localISO.slice(0, 19);
         };
    
     const [formData,setFormData]=useState({
     'entrenamiento':entrenamiento.id,
     'weight':'',
     'exercise':exercise[1],
-    'date': daynow(),
+    'date': "",
     'reps':'',
     'failure':false
 
@@ -34,6 +34,8 @@ function SerieForm({exercise, setShowForm, entrenamiento, setEntrenamiento}){
     const submitForm=async()=>{
         await accessNew();
         try{
+            formData.date=daynow();
+            console.log(formData.date);
             const response=await createSerie(formData);
             setSerie(response.data);
             const response2=await getEntrenamiento(entrenamiento.id);

@@ -14,7 +14,10 @@ function Series({series,startTrainning,entrenamiento_id}){
                             <Card className="m-1"><div><Link to={`/profile/series/${serie?.id}`}><Icon className="mr-1 mt-1" icon="whh:edit" style={{float:"right"}} /></Link></div>
                                 <CardText>{serie.exercise.name}</CardText>
                                 <CardImg src={serie?.exercise?.image}/>
-                                <CardFooter>{serie?.number}) {serie?.weight} x {serie?.reps} {serie?.failure ? <Icon icon="emojione-monotone:flexed-biceps" style={{color:"red"}} /> : <Icon icon="emojione-monotone:flexed-biceps" style={{color:"green"}} />}</CardFooter>
+                                <CardFooter>
+                                    <span style={{fontSize:"0.9em"}}>{serie?.number}) {serie?.weight} x {serie?.reps} {serie?.failure ? <Icon icon="emojione-monotone:flexed-biceps" style={{color:"red"}} /> : <Icon icon="emojione-monotone:flexed-biceps" style={{color:"green"}} />}</span>
+                                    <span style={{fontSize:"0.9em"}}>{new Date(serie?.date).toISOString().slice(11,19)}</span>
+                                    </CardFooter>
                                 
                             </Card>
                         </Col>
