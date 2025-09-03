@@ -35,7 +35,6 @@ function SerieForm({exercise, setShowForm, entrenamiento, setEntrenamiento}){
         await accessNew();
         try{
             formData.date=daynow();
-            console.log(formData.date);
             const response=await createSerie(formData);
             setSerie(response.data);
             const response2=await getEntrenamiento(entrenamiento.id);

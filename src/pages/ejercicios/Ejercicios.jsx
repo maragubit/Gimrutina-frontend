@@ -37,7 +37,6 @@ function Ejercicios(){
                 setEjerciciosGim(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));
                 setEjercicios(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));//iniciamos con los ejercicios del gim como seleccionados
                 setFilteredEjercicios(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));
-                console.log(ejerciciosGim);
         }
              
         catch (error) {

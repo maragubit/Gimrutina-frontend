@@ -33,7 +33,7 @@ useEffect(()=>{
     }
   }
   const cookie = Cookies.get("refresh");
-  console.log("Refresh token cookie:", cookie);
+  
   
   if (!cookie) {
       setError("Usuario no autenticado");

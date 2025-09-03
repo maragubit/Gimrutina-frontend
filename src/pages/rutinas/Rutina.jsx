@@ -24,7 +24,6 @@ function Rutina(){
         
         try {
             const token = await executeRecaptcha();
-            console.log("Token generado:", token);
             accessNew();
             const response= await createRutina(name,isPrivate,token);
             const id=response.data.id;

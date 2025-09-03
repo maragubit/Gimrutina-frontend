@@ -58,7 +58,6 @@ useEffect(()=>{ //Cra lista de ejercicios filtrando entrenamientos por fecha y e
         const entrenamientoDate = new Date(entrenamiento.date);
         return (entrenamientoDate >= fechaDesde && entrenamientoDate <= fechaHasta)
     })
-    console.log(newEntrenamientos)
     setEntrenamientos(newEntrenamientos);
     //tenemos entrenamientos filtrados por fecha
     const ejerciciosMap = new Map();
