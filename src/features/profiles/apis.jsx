@@ -41,3 +41,12 @@ export const addFriend= async (id)=>{
         }
     })
 }
+
+export const getFriends= async ()=>{
+  const accessToken= await accessNew();
+    return axios.get(`${domain}/perfiles/perfiles/myFriends/`,{
+        headers:{
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+}
