@@ -623,3 +623,15 @@ video {
 		width: 100%;
 	}	
 }
+
+.notifications {
+	background: red;
+	color: white;
+	font-size: 0.7rem;
+	font-weight: 700;
+	border-radius: 200px;
+	padding: 2px 6px 3px 6px;
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}

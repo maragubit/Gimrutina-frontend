@@ -67,8 +67,10 @@ useEffect(()=>setRefresh(prev => prev+1),[profile]);
                   <Nav.Link eventKey="/profile" as={Link} to="profile" className="d-flex justify-content-end ml-5 mr-2 pr-2"  onClick={() => setExpanded(false)}>
                   <span className='mr-1 mt-2'>Área personal</span>
                     <Card style={{width:"45px", border:"0"}}>
+                      <div>
+                      {profile.notifications.length>0 && <span className='notifications'>{profile.notifications.length}</span>}
                       {!loadData && profile.image ? <CardImg src={profile.image} style={{borderRadius:"200px"}}/>:<CardImg src={profileIcon}/>}
-                    </Card>
+                    </div></Card>
                   </Nav.Link>
                 </>
               ) : (

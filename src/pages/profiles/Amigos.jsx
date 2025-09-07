@@ -1,10 +1,10 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useEffect, useState } from "react";
 import { Alert, Button, Container, FormControl, FormSelect } from "react-bootstrap";
-import { addFriend, getFriends, getUsers } from "../../features/profiles/apis";
+import { addFriend, createNotification, getFriends, getUsers } from "../../features/profiles/apis";
 import DataTable from "react-data-table-component";
 import darkThemeStyles from "../../assets/js/darkTheme";
-import { Link } from "react-router-dom";
+import { data, Link } from "react-router-dom";
 
 
 
@@ -55,12 +55,20 @@ export default function Amigos(){
 
 
     /* FUNCTIONS */
+
+    /* agregar amigo (manda notificacion) */
     const addNewFriend= async(id)=>{
         try{
-            await addFriend(id);
+            const data={
+                verb: "agregar como amigo",
+                recipient: id,
+                target: "te ha enviado una solicitud de amistad"
+            };
+            
+            await createNotification(data);
             
         }catch(err){
-            setError(err.response.data.detail);
+            setError(err.response?.data?.detail);
         }
     }
 
