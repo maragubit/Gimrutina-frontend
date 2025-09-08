@@ -60,7 +60,7 @@ export default function Amigos(){
     const addNewFriend= async(id)=>{
         try{
             const data={
-                verb: "agregar como amigo",
+                verb: "Solicitud de amistad",
                 recipient: id,
                 target: "te ha enviado una solicitud de amistad"
             };

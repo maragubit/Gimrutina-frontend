@@ -10,6 +10,9 @@ const darkThemeStyles = {
       backgroundColor: '#1f1f1f',
       color: '#eee',
       fontWeight: 'bold',
+      textAlign: 'center',
+      paddingLeft: '5px',
+      paddingRight: '0px',
     }
   },
   rows: {
@@ -18,12 +21,21 @@ const darkThemeStyles = {
       color: '#eee',
       '&:hover': {
         backgroundColor: '#333',
-      }
+      },
+      textAlign: 'left',
+      padding:"2px"
     }
   },
   cells: {
     style: {
       color: '#eee',
+      whiteSpace: 'normal !important', 
+      wordBreak: 'break-word !important',
+      height: 'auto',
+      textAlign: 'left',
+      paddingLeft: '5px',
+      paddingRight: '0px',
+      minWidth: '150px !important'
     }
   },
   pagination: {

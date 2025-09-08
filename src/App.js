@@ -25,6 +25,7 @@ import Serie from './pages/profiles/Serie';
 import Progreso from './pages/profiles/Progreso';
 import Amigos from './pages/profiles/Amigos';
 import Notificaciones from './pages/profiles/Notificaciones';
+import Notificacion from './pages/profiles/Notificacion';
 import Suscripciones from './pages/profiles/Suscripciones';
 import CookieConsent from "react-cookie-consent";
 import CookiesPolicy from './components/CookiesPolicy';
@@ -92,7 +93,9 @@ function App() {
           <Route path="/profile/progreso" element={<Progreso/>}/>
           <Route path="/profile/amigos" element={<Amigos/>}/>
           <Route path="/profile/notificaciones" element={<Notificaciones/>}/>
+          <Route path="/profile/notificaciones/notificacion/:id" element={<Notificacion/>}/>
           <Route path="/profile/suscripciones" element={<Suscripciones/>}/>
+          
         </Route>
 
         

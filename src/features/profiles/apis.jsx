@@ -92,3 +92,12 @@ export const markAsReadNotification= async (id)=>{
         }
     })
 }
+
+export const getNotification= async (id)=>{
+  const accessToken= await accessNew();
+    return axios.get(`${domain}/notifications/notifications/${id}/`,{
+        headers:{
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+}
