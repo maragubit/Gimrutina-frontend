@@ -112,7 +112,7 @@ function Entrenamiento(){
         {start&&<Button variant="danger"className="mb-5 mt-3" onClick={()=>finishTrainning()}>Finalizar entrenamiento</Button>}
         {start && !load && <Cronometro date={entrenamiento?.date}/>}
         <br/>
-        {start && <Series series={entrenamiento?.series} startTraining={startTrainnig} entrenamiento_id={entrenamiento?.id}/>}
+        {start && <Series series={entrenamiento?.series} startTraining={startTrainnig} entrenamiento={entrenamiento} setEntrenamiento={setEntrenamiento}/>}
         {start && !otrosEjercicios && <><h5>Rutina actual:
         <FormSelect className="mt-3" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
             <option value={"monday"}>lunes</option>

@@ -1,8 +1,12 @@
 import { Card, CardFooter, CardImg, CardText, Col, Container, Row } from "react-bootstrap";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import {Link} from "react-router-dom";
+import { useState } from "react";
+import SerieForm from "./SerieForm";
 
-function Series({series,startTrainning,entrenamiento_id}){
+function Series({series,startTrainning,entrenamiento, setEntrenamiento}){
+     const [showForm,setShowForm]=useState(false);
+
     return(<>
     <Container className="bg-dark pb-4 pt-4 text-white">
         <h6>Series realizadas hoy:</h6>
@@ -13,7 +17,7 @@ function Series({series,startTrainning,entrenamiento_id}){
                         <Col xs="6" lg="3">
                             <Card className="m-1"><div><Link to={`/profile/series/${serie?.id}`}><Icon className="mr-1 mt-1" icon="whh:edit" style={{float:"right"}} /></Link></div>
                                 <CardText>{serie.exercise.name}</CardText>
-                                <CardImg src={serie?.exercise?.image}/>
+                                <CardImg src={serie?.exercise?.image} onClick={()=>setShowForm([serie?.exercise?.name, serie?.exercise?.id])}/>
                                 <CardFooter>
                                     <span style={{fontSize:"0.9em"}}>{serie?.number}) {serie?.weight} x {serie?.reps} {serie?.failure ? <Icon icon="emojione-monotone:flexed-biceps" style={{color:"red"}} /> : <Icon icon="emojione-monotone:flexed-biceps" style={{color:"green"}} />}</span>
                                     <span style={{fontSize:"0.9em"}}>{new Date(serie?.date).toISOString().slice(11,19)}</span>
@@ -25,6 +29,7 @@ function Series({series,startTrainning,entrenamiento_id}){
                 }
             )}
         </Row>
+         {showForm && <SerieForm exercise={showForm} setShowForm={setShowForm} entrenamiento={entrenamiento} setEntrenamiento={setEntrenamiento}/>}
     </Container>
     <br/>
     </>)
