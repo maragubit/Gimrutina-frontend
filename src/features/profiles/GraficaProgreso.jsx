@@ -13,19 +13,19 @@ function GraficaProgreso({data}){
 />
         
         {/* eje izquierdo → peso */}
-        <YAxis yAxisId="left" stroke="white" label={{ value: "Peso (kg)", angle: -90, position: "insideLeft" }} />
+        <YAxis yAxisId="left"  stroke="red" label={{ value: "Peso (kg)", angle: -90, position: "insideLeft" }} />
         
         {/* eje derecho → reps */}
-        <YAxis yAxisId="right" stroke="white" orientation="right" label={{ value: "Reps", angle: 90, position: "insideRight" }} />
+        <YAxis yAxisId="right"  stroke="green" orientation="right" label={{ value: "Reps", angle: 90, position: "insideRight" }} />
         
         <Tooltip />
         <Legend style={{color:"white"}} />
         
         {/* línea de peso */}
-        <Line yAxisId="left" type="monotone" dataKey="weight" stroke="#c6ee35" activeDot={{ r: 8 }} />
+        <Line yAxisId="left" type="monotone" dataKey="weight" stroke="red" activeDot={{ r: 8 }} />
         
         {/* línea de reps */}
-        <Line yAxisId="right" type="monotone" dataKey="reps" stroke="#8f1e0f" />
+        <Line yAxisId="right" type="monotone" dataKey="reps" stroke="green" />
       </LineChart>
     </ResponsiveContainer>
     </>)
