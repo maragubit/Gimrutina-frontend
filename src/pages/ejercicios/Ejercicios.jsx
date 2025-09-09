@@ -34,8 +34,8 @@ function Ejercicios(){
                 const response3 = await getProfile();
                 setProfile(response3.data);
                 setMisEjercicios(response.data.filter((ejercicio)=>ejercicio.user.id==Cookies.get('user')));
-                setEjerciciosGim(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));
-                setEjercicios(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));//iniciamos con los ejercicios del gim como seleccionados
+                setEjerciciosGim(response.data.filter((ejercicio)=>{return ejercicio.gimnasio.id == response3.data.gimnasio}));
+                setEjercicios(response.data.filter((ejercicio)=>{return ejercicio.gimnasio.id == response3.data.gimnasio}));//iniciamos con los ejercicios del gim como seleccionados
                 setFilteredEjercicios(response.data.filter((ejercicio)=>{return ejercicio.user.gimnasio == response3.data.gimnasio}));
         }
              
@@ -126,7 +126,7 @@ function Ejercicios(){
         <option value="1">Ejercicios públicos</option>
         <option value="2">Favoritos</option>
         <option value="3">Mis ejercicios</option>
-        <option value="4">Ejercicios de mi Gimnasio</option>
+        <option value="4">Ejercicios de usuarios de mi gimnasio</option>
     </FormSelect></div>
     <FormControl placeholder="nombre, músculo, usuario..."  value={name} onChange={(e) => setName(e.target.value)}></FormControl>
     <br/>
@@ -142,6 +142,8 @@ function Ejercicios(){
     <Card.Img src={ejercicio.image ? ejercicio.image : noImg} style={{height:"220px"}}/></Link>
     <CardFooter><span style={{fontSize:"12px"}}>{ejercicio.muscle}</span>
     <div><Icon style={{fontSize:"1rem"}} className="d-inline" icon="fe:user" /> <p className="d-inline" style={{fontSize:"0.8rem"}}>{ejercicio.user.username}</p></div>
+    <div><Icon style={{fontSize:"1rem"}} className="d-inline" icon="solar:dumbbell-large-bold-duotone" /> <p className="d-inline" style={{fontSize:"0.8rem"}}>{ejercicio.gimnasio.nombre}</p></div>
+
     </CardFooter>
   </Card>
   </Col>
