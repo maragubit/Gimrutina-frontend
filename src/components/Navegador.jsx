@@ -84,6 +84,7 @@ useEffect(()=>setRefresh(prev => prev+1),[profile]);
        
       </div>
       {error && <Alert variant="danger">{error}</Alert>}
+      {profile && !profile.gimnasio && <Alert variant="warning" className='text-center mb-0'>No tienes gimnasio asignado. Selecciona uno en tu <Link to="/profile">Área personal</Link></Alert>}
     </>
   );
 }

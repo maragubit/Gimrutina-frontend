@@ -18,7 +18,7 @@ const [search,setSearch]=useState("");
 
 const guardarCambios=async ()=>{
     const data = new FormData();
-    data.append('name', name);
+    data.append('nombre', name);
     data.append('peso', peso);
     data.append('altura', altura);
     data.append('peso', peso);
